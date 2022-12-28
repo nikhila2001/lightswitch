@@ -1,8 +1,10 @@
 import React, {useContext} from 'react';
-import DarkModeContext from './DarkModeContext';
+import DarkModeContext, { useDarkMode } from './DarkModeContext';
 
 function Content() {
-    const {darkMode} = useContext(DarkModeContext);
+    const {darkMode} = useDarkMode();
+
+
     const contentProvider = () => {
         if (darkMode) {
             return <p>But with the lights off, <span>you can see it all.</span></p>
