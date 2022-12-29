@@ -1,6 +1,5 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 
-const DarkModeContext = createContext();
 
 function DarkModeProvider(props) {
     console.log(props, "props")
@@ -9,16 +8,35 @@ function DarkModeProvider(props) {
         setDarkMode(!darkMode);
     };
     console.log("dark mode is rendering")
+    // const light = {
+    //     DarkModeContext, DarkModeProvider
+    // }
+
+    const contextValue = {
+        darkMode,
+        toggleDarkMode
+    }
 
     return (
         <div>
-            <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
+            <DarkModeContext.Provider value={contextValue}>
                 {props.children}
             </DarkModeContext.Provider>
         </div>
     )
 }
-const light = {
-    DarkModeContext, DarkModeProvider
+
+const initialContext = {
+    darkMode: true,
+    toggleDarkMode: () => {
+        throw new Error('You forgot to wrap your component in <DarkModeProvider>.');
+    }
 }
-export default light;
+/**
+ * The Basic Auth Context
+ */
+export const DarkModeContext = createContext(initialContext);
+
+export const useDarkMode = () => useContext(DarkModeContext);
+
+export default DarkModeProvider;

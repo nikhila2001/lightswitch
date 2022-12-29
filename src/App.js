@@ -1,12 +1,12 @@
-import Container from './Container';
-import  DarkModeProvider from './context/DarkModeContext';
-import './App.css';
+import Container from "./Container";
+import DarkModeProvider from "./context/DarkModeContext";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <DarkModeProvider>
-      <Container />
+        <Container />
       </DarkModeProvider>
     </div>
   );
